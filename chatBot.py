@@ -1,12 +1,11 @@
-from chatterbot import ChatBot
+from neuralintents import GenericAssistant
 
-chatbot = ChatBot("Chatpot")
-
-exit_conditions = (":q", "quit", "exit")
-while True:
-    query = input("> ")
-    if query in exit_conditions:
-        break
-    else:
-        print(f"🪴 {chatbot.get_response(query)}")
-        ##https://realpython.com/build-a-chatbot-python-chatterbot/
+def generateAnswer(input)->str:
+    print(input)
+    chatbot=GenericAssistant('intents.json', model_name="test_model")
+    print("pana aici")
+    chatbot.train_model()
+    print("pana aici2")
+    chatbot.save_model()
+    print("pana aici3")
+    return chatbot.request(input)
