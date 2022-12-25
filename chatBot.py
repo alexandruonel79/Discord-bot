@@ -1,11 +1,17 @@
-from neuralintents import GenericAssistant
-
+from chatterbot import ChatBot
+  
+from chatterbot.trainers import ChatterBotCorpusTrainer
+ 
 def generateAnswer(input)->str:
-    print(input)
-    chatbot=GenericAssistant('intents.json', model_name="test_model")
-    print("pana aici")
-    chatbot.train_model()
-    print("pana aici2")
-    chatbot.save_model()
-    print("pana aici3")
-    return chatbot.request(input)
+    chatbot=ChatBot('Ribera s bot')
+    
+    # Create a new trainer for the chatbot
+    trainer = ChatterBotCorpusTrainer(chatbot)
+    
+    # Now let us train our bot with multiple corpus
+    trainer.train(
+                "chatterbot.corpus.english"
+                 )
+    
+    response = chatbot.get_response(input)
+    return response

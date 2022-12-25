@@ -6,6 +6,7 @@ import time
 import discord
 import weather
 import chatBot
+import facts
 
 voice_client_global = {}
 
@@ -16,10 +17,33 @@ ffmpeg_options = {'options': "-vn"}
 talkToBotGlobal={}
 talkToBotGlobal[0]=0
 
+greetUserGlobal={}
+indexGreet={}
+indexGreet[0]=0
+
+def existsUser(input)->int:
+    cnt=0
+    while cnt<len(greetUserGlobal):
+        if greetUserGlobal[cnt]==input:
+            indexGreet[0]=indexGreet[0]+1
+            return 1
+        cnt=cnt+1
+
+    return 0
+   
+
 async def handle_response(message) -> str:
     text_message = message.content.lower()
 
     if talkToBotGlobal[0]==0:
+
+        if existsUser(message.author)==0:
+           greetUserGlobal[indexGreet[0]]=message.author
+           return f"Hello @{message.author}"
+
+        if text_message == '?facts':
+            await facts.schedule_daily_message(message)
+
         if text_message == 'hello':
             return 'Hey there!'
 
@@ -78,6 +102,7 @@ async def handle_response(message) -> str:
 
         if text_message=="chatbot":
             talkToBotGlobal[0]=1
+            return "`Conversation to chatbot started ! Ask him anything`"
 
         if text_message == "[]": # Checks if there is an attachment on the message
             return
@@ -88,5 +113,6 @@ async def handle_response(message) -> str:
     else:
         if text_message=="quit":
             talkToBotGlobal[0]=0
+            return "`Conversation to chatbot is closed!`"
         else:
             return chatBot.generateAnswer(text_message)

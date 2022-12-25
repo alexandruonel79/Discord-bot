@@ -54,11 +54,12 @@ def getWeather(city_name) -> str:
         # store the value corresponding
         # to the "description" key at
         # the 0th index of z
-        weather_description = z[0]["description"]
-    
+        weather_description = translateFile.translateToRomanian(z[0]["description"])
+        weather_description = translateFile.translateToRomanian(weather_description)
+        weather_description = weather_description.split('w', 1)[0]
         # print following values
         return(" Temperatura in Celsius = " +
-                        str(int(current_temperature-272))  +
+                        str(int(current_temperature-273.15))  +
             "\n Umiditate = " +
                         str(current_humidity) + "%" +
             "\n Descriere = " +

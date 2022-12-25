@@ -1,7 +1,6 @@
 import discord
 import responses
 
-
 # Send messages
 async def send_message(message, user_message):
     try:
