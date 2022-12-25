@@ -7,6 +7,7 @@ import discord
 import weather
 import chatBot
 import facts
+import editor
 
 voice_client_global = {}
 
@@ -47,10 +48,10 @@ async def handle_response(message) -> str:
         if text_message == 'hello':
             return 'Hey there!'
 
-        if text_message == 'roll':
+        if text_message == '?roll':
             return str(random.randint(1, 6))
 
-        if text_message == '!help':
+        if text_message == '?help':
             return "`This is a help message that you can modify.`"
     
         if text_message.startswith("?play"):
@@ -96,13 +97,18 @@ async def handle_response(message) -> str:
             except Exception as err:
                 print(err)
     
-        if text_message.startswith("vreme"):
+        if text_message.startswith("?vreme"):
             oras=text_message.split(" ")[1]
             return weather.getWeather(oras)
 
-        if text_message=="chatbot":
+        if text_message=="?chatbot":
             talkToBotGlobal[0]=1
             return "`Conversation to chatbot started ! Ask him anything`"
+
+        if text_message.startswith("?edit_image"):
+            print("am intrat")
+            await editor.imageEditor(text_message)
+            return "Imagine editata cu succes!"
 
         if text_message == "[]": # Checks if there is an attachment on the message
             return
@@ -111,7 +117,7 @@ async def handle_response(message) -> str:
             await message.attachments[0].save(imageName)
             return "Imagine salvata!"
     else:
-        if text_message=="quit":
+        if text_message=="?quit":
             talkToBotGlobal[0]=0
             return "`Conversation to chatbot is closed!`"
         else:
