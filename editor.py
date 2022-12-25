@@ -8,13 +8,13 @@ def imageEditor(message):
                 requirements = [message.split(' ')[1], message.split(' ')[2]]
                 if requirements[0] == 'contrast':
                         enh = ImageEnhance.Contrast(im)  
-                        enh.enhance(1 + float(requirements[1])).show()
+                        return enh.enhance(1 + float(requirements[1]))
                 if requirements[0] == 'color':
                         enh = ImageEnhance.Color(im)
-                        enh.enhance(1 + float(requirements[1])).show()
+                        return enh.enhance(1 + float(requirements[1]))
                 if requirements[0] == 'brightness':
                         enh = ImageEnhance.Brightness(im)
-                        enh.enhance(1 + float(requirements[1])).show()
+                        return enh.enhance(1 + float(requirements[1]))
                 if requirements[0] == 'sharpness':
                         enh = ImageEnhance.Color(im)
-                        enh.enhance(1 + float(requirements[1])).show()
+                        return enh.enhance(1 + float(requirements[1]))

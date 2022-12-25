@@ -104,11 +104,12 @@ async def handle_response(message) -> str:
         if text_message=="?chatbot":
             talkToBotGlobal[0]=1
             return "`Conversation to chatbot started ! Ask him anything`"
-
+        
+        # TODO repair
         if text_message.startswith("?edit_image"):
             print("am intrat")
-            await editor.imageEditor(text_message)
-            return "Imagine editata cu succes!"
+            im = editor.imageEditor(text_message)
+            return im
 
         if text_message == "[]": # Checks if there is an attachment on the message
             return
