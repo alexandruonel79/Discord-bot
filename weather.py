@@ -3,7 +3,7 @@ import requests, json
 import translateFile
  
 # Enter your API key here
-api_key = "216eedd2bea34e63de77c0c3243a28e2"
+api_key = "###modify"
  
 # base_url variable to store url
 base_url = "http://api.openweathermap.org/data/2.5/weather?"
