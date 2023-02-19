@@ -11,7 +11,7 @@ async def send_message(message, user_message):
         print(e)
 
 def run_discord_bot():
-    TOKEN = 'MTA1NTg4NzQ5OTcyNzIyNDg3Mg.GUUs3C.v5sEwTC4GMWoim7aiC2tu0-UbMeUneOwkt8haY'
+    TOKEN = '###### trebuie adaugat'
     intents = discord.Intents.default()
     intents.message_content = True
     client = discord.Client(intents=intents)
